@@ -54,16 +54,19 @@
                 this.current = index;
             },
             async loadMarkdown() {
-                const webshopRes = await fetch('/content/webshop.md');
+                const base = '{{ site.baseurl }}';
+
+                const webshopRes = await fetch(base + '/content/webshop.md');
                 const webshopText = await webshopRes.text();
 
-                const dwhRes = await fetch('/content/dwh.md');
+                const dwhRes = await fetch(base + '/content/dwh.md');
                 const dwhText = await dwhRes.text();
 
                 this.pages = [
                     { name: 'Webshop', content: marked.parse(webshopText) },
                     { name: 'DWH', content: marked.parse(dwhText) }
                 ];
+                console.log(this.pages);
             }
         },
         mounted() {
