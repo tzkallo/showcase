@@ -1,105 +1,101 @@
 <!DOCTYPE html>
 <html lang="hu">
-<head>
-    <meta charset="UTF-8" />
-    <title>tzkallo - showcase</title>
+    <head>
+        <meta charset="UTF-8" />
+        <title>tzkallo - showcase</title>
 
-    <link href="{{ site.baseurl }}/libs/vuetify.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/vuetify@3.5.11/dist/vuetify.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet">
+        <link href="{{ site.baseurl }}/assets/index.css" rel="stylesheet">
+        <link href="{{ site.baseurl }}/libs/vuetify.min.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet">
 
-    <script src="{{ site.baseurl }}/libs/vue.global.min.js"></script>
-    <script src="{{ site.baseurl }}/libs/vuetify.min.js"></script>
-    <script src="{{ site.baseurl }}/libs/marked.min.js"></script>
-</head>
-<body>
-    <div id="app" class="container mt-5">
-        <v-app>
-            <v-container class="mx-auto" style="max-width: 70%;">
-            <v-row>
-                <v-col cols="3">
-                    <v-card class="mx-auto" elevation="2">
-                        <v-toolbar color="transparent">
-                            <v-toolbar-title class="text-h6"><strong>tzkallo</strong></v-toolbar-title>
-                            <v-btn icon href="https://github.com/tzkallo" target="_blank" rel="noopener">
-                                <v-icon>mdi-github</v-icon>
-                            </v-btn>
-                            <v-btn icon href="https://www.linkedin.com/in/tzkallo/" target="_blank" rel="noopener">
-                                <v-icon>mdi-linkedin</v-icon>
-                            </v-btn>
-                        </v-toolbar>
-                        <v-card-text>
-                            <v-timeline align="start" density="compact">
-                                <v-timeline-item
-                                    v-for="(item, index) in pages"
-                                    :key="index"
-                                    :icon="item.icon"
-                                    :dot-color="current === index ? item.color : 'grey'"
-                                    @click="change(index)"
-                                    class="cursor-pointer"
-                                >
-                                    <strong>[[ item.name ]]</strong>
-                                    <div class="text-caption">[[ item.description ]]</div>
-                                </v-timeline-item>
-                            </v-timeline>
-                        </v-card-text>
-<!--                        <v-card-subtitle class="text-center grey--text text--darken-1">
-                            © 2025
-                        </v-card-subtitle>-->
-                    </v-card>
-                </v-col>
+        <script src="{{ site.baseurl }}/libs/marked.min.js"></script>
+        <script src="{{ site.baseurl }}/libs/vue.global.min.js"></script>
+        <script src="{{ site.baseurl }}/libs/vuetify.min.js"></script>
 
-                <v-col cols="9">
-                <div v-html="pages[current]?.content"></div>
-                </v-col>
-            </v-row>
-            </v-container>
-        </v-app>
-    </div>
-    <script>
-        const { createApp } = Vue;
-        const vuetify = Vuetify.createVuetify();
-        const app = createApp({
-            delimiters: ['[[', ']]'],
-            data() {
-                return {
-                    current: 0,
-                    pages: [
-                        {
-                            name: 'Webshop',
-                            content: '',
-                            description: 'Django, Django REST framework, Vue, Vuex, Vuetify, Html, Css',
-                            icon: 'mdi-web',
-                            color: '#1867C0',
-                        },
-                        {
-                            name: 'DWH',
-                            content: '',
-                            description: 'PostgreSQL, dbt, Airflow',
-                            icon: 'mdi-database',
-                            color: '#3f51b5',
-                        },
-                    ]
-                };
-            },
-            methods: {
-                change(index) {
-                    this.current = index;
+        <script src="{{ site.baseurl }}/libs/vuetify.min.js"></script>
+
+        <script>
+            const BASE_URL = '{{ site.baseurl }}';
+        </script>
+
+        {% include sidebar.html %}
+        <script src="{{ site.baseurl }}/components/sidebar/component.js"></script>
+
+        {% include webshop.html %}
+        <script src="{{ site.baseurl }}/components/webshop/component.js"></script>
+
+        {% include dwh.html %}
+        <script src="{{ site.baseurl }}/components/dwh/component.js"></script>
+
+        {% include archive.html %}
+        <script src="{{ site.baseurl }}/components/archive/component.js"></script>
+    </head>
+    <body>
+        <div id="app" class="container mt-5">
+            <v-app>
+                <v-container class="mx-auto" style="max-width: 70%;">
+                    <v-row>
+                        <v-col cols="3">
+                            <sidebar :pages="pages" :current="current" @change="change" />
+                        </v-col>
+                        <v-col cols="9">
+                            <transition name="fade" mode="out-in">
+                                <component :is="page"></component>
+                            </transition>
+                        </v-col>
+                    </v-row>
+                </v-container>
+            </v-app>
+        </div>
+        <script>
+            const { createApp } = Vue;
+            const vuetify = Vuetify.createVuetify();
+            const app = createApp({
+                data() {
+                    return {
+                        current: 0,
+                        page: 'webshop',
+                        pages: [
+                            {
+                                component: 'webshop',
+                                name: 'Webshop',
+                                content: '',
+                                description: 'Django, Django REST framework, Vue, Vuex, Vuetify, Html, Css',
+                                icon: 'mdi-web',
+                                color: '#1867C0',
+                            },
+                            {
+                                component: 'dwh',
+                                name: 'DWH',
+                                content: '',
+                                description: 'PostgreSQL, dbt, Airflow',
+                                icon: 'mdi-database',
+                                color: '#3f51b5',
+                            },
+                            {
+                                component: 'archive',
+                                name: 'Archive',
+                                content: '',
+                                description: 'Older projects',
+                                icon: 'mdi-archive',
+                                color: '#808080',
+                            },
+                        ]
+                    };
                 },
-                async loadMarkdown() {
-                    const base = '{{ site.baseurl }}';
-                    const webshopRes = await fetch(base + '/content/webshop.md');
-                    const dwhRes = await fetch(base + '/content/dwh.md');
-                    this.pages[0].content = marked.parse(await webshopRes.text());
-                    this.pages[1].content = marked.parse(await dwhRes.text());
-                }
-            },
-            mounted() {
-                this.loadMarkdown();
-            }
-        })
-        .use(vuetify)
-        .mount('#app');
-    </script>
-</body>
+                methods: {
+                    change(index) {
+                        this.page = this.pages[index].component;
+                        this.current = index;
+                    },
+                },
+            })
+            .use(vuetify)
+            .component('sidebar', Sidebar)
+            .component('webshop', Webshop)
+            .component('dwh', Dwh)
+            .component('archive', Archive)
+            .mount('#app');
+        </script>
+    </body>
 </html>

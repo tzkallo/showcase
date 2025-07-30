@@ -1,0 +1,32 @@
+<template id="Sidebar">
+<v-card class="mx-auto" elevation="2">
+    <v-toolbar color="transparent">
+        <v-toolbar-title class="text-h6"><strong>tzkallo</strong></v-toolbar-title>
+        <v-btn icon href="https://github.com/tzkallo" target="_blank" rel="noopener" class="profile-icon">
+            <v-icon>mdi-github</v-icon>
+        </v-btn>
+        <v-btn icon href="https://www.linkedin.com/in/tzkallo/" target="_blank" rel="noopener" class="profile-icon">
+            <v-icon>mdi-linkedin</v-icon>
+        </v-btn>
+    </v-toolbar>
+    <v-card-text>
+        <v-timeline align="start" density="compact">
+            <v-timeline-item
+                v-for="(item, index) in pages"
+                :key="index"
+                :icon="item.icon"
+                :dot-color="current === index ? item.color : 'grey'"
+                @click="clickPage(index)"
+                class="cursor-pointer"
+            >
+                <strong>[[ item.name ]]</strong>
+                <div class="text-caption">[[ item.description ]]</div>
+            </v-timeline-item>
+        </v-timeline>
+    </v-card-text>
+    <v-card-subtitle class="text-center grey--text text--darken-1">
+        © 2025
+    </v-card-subtitle>
+</v-card>
+</template>
+
