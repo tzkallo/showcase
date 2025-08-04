@@ -1,0 +1,65 @@
+<template id="Tile">
+<v-col cols="12" md="4">
+    <v-card
+        class="mx-auto"
+        :title="title"
+        :subtitle="subtitle"
+        style="height: 140px; position: relative;"
+    >
+        <template v-slot:prepend>
+            <div
+                :style="{
+                    backgroundColor: color,
+                    borderRadius: '50%',
+                    width: '40px',
+                    height: '40px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: 'white'
+                }"
+            >
+                <v-icon size="24">[[ icon ]]</v-icon>
+            </div>
+        </template>
+
+        <v-card-text>[[ tags ]]</v-card-text>
+
+        <!-- Gallery button -->
+        <v-btn
+            v-if="images && images.length"
+            icon
+            small
+            variant="plain"
+            style="position: absolute; top: 2px; right: 4px;"
+            @click="showGallery = true"
+        >
+            <v-icon>mdi-image-multiple-outline</v-icon>
+        </v-btn>
+    </v-card>
+
+    <v-dialog v-model="showGallery" max-width="600px">
+        <v-card style="position: relative;">
+            <v-btn
+                icon
+                @click="showGallery = false"
+                style="position: absolute; top: 8px; right: 8px; z-index: 10;"
+            >
+                <v-icon>mdi-close</v-icon>
+            </v-btn>
+            <v-carousel
+                :class="[images.length > 1 ? 'simple-dots' : 'hide-dots']"
+                :show-arrows="false"
+                height="600"
+            >
+            <v-carousel-item
+                v-for="(img, i) in images"
+                :key="i"
+            >
+                <v-img :src="img" height="600px" contain></v-img>
+            </v-carousel-item>
+            </v-carousel>
+        </v-card>
+    </v-dialog>
+</v-col>
+</template>
