@@ -20,6 +20,16 @@
 
         {% include tile.html %}
         <script src="{{ site.baseurl }}/components/tile.js"></script>
+        {% include plc.html %}
+        <script src="{{ site.baseurl }}/components/plc.js"></script>
+        {% include webshop.html %}
+        <script src="{{ site.baseurl }}/components/webshop.js"></script>
+        {% include dwh.html %}
+        <script src="{{ site.baseurl }}/components/dwh.js"></script>
+        {% include snake.html %}
+        <script src="{{ site.baseurl }}/components/snake.js"></script>
+        {% include thesis.html %}
+        <script src="{{ site.baseurl }}/components/thesis.js"></script>
     </head>
     <body>
         <div id="app">
@@ -51,22 +61,18 @@
 
                     <v-row no-gutters justify="start" class="mt-0" style="margin-top: 0;">
                         <v-col cols="12" style="font-size: 0.75rem; color: rgba(0,0,0,0.6); padding-top: 0;">
-                            © 2025 Kálló Tamás &lt;kallotamas@gmail.com&gt;
+                            © 2025 Kálló Tamás Zoltán &lt;kallotamas@gmail.com&gt;
                         </v-col>
+                     </v-row>
+
+                     <v-row no-gutters>
+<!--                         <v-col cols="12" md="4"><plc></plc></v-col> -->
+                        <v-col cols="12" md="4"><webshop></webshop></v-col>
+                        <v-col cols="12" md="4"><dwh></dwh></v-col>
+                        <v-col cols="12" md="4" ><snake :base-url="baseUrl"></snake></v-col>
+                        <v-col cols="12" md="4" ><thesis :base-url="baseUrl"></thesis></v-col>
                     </v-row>
 
-                    <v-row>
-                        <tile
-                            v-for="(tile, index) in tiles"
-                            :key="index"
-                            :title="tile.title"
-                            :subtitle="tile.subtitle"
-                            :tags="tile.tags"
-                            :icon="tile.icon"
-                            :color="tile.color"
-                            :images="tile.images"
-                        ></tile>
-                    </v-row>
                 </v-container>
             </v-app>
         </div>
@@ -76,66 +82,17 @@
             const app = createApp({
                 data() {
                     return {
-                        tiles: [
-                            {
-                                component: 'webshop',
-                                title: 'Webshop',
-                                subtitle: 'Online transaction system',
-                                content: '',
-                                tags: 'Django, Django REST framework, Vue, Vuex, Vuetify, Html, Css',
-                                icon: 'mdi-web',
-                                color: '#1867C0',
-                            },
-                            {
-                                component: 'dwh',
-                                title: 'DWH',
-                                subtitle: 'Data warehouse for webshop',
-                                content: '',
-                                tags: 'PostgreSQL, dbt, Airflow, Redash',
-                                icon: 'mdi-database',
-                                color: '#FFCA28',
-                            },
-                            // {
-                            //     component: 'plc',
-                            //     title: 'PLC',
-                            //     subtitle: 'Coming soon',
-                            //     content: '',
-                            //     tags: '-',
-                            //     icon: 'mdi-electric-switch',
-                            //     color: '#7B0323',
-                            // },
-                            {
-                                component: 'snake',
-                                title: 'Snake',
-                                subtitle: 'Simple classic game',
-                                content: '',
-                                tags: 'Html, Brython',
-                                icon: 'mdi-snake',
-                                color: '#17a2b8',
-                                images: [
-                                    BASE_URL + '/assets/images/snake-game.png',
-                                ]
-                            },
-                            {
-                                component: 'thesis',
-                                title: 'Thesis',
-                                subtitle: 'University project',
-                                content: '',
-                                tags: 'C++, Qt, Opencv',
-                                icon: 'mdi-image-filter-center-focus-strong-outline',
-                                color: '#808080',
-                                images: [
-                                    BASE_URL + '/assets/images/fig_5_0_2_a.png',
-                                    BASE_URL + '/assets/images/DEER_bm99_si.png',
-                                    BASE_URL + '/assets/images/DEER_bm99_pi.png',
-                                ]
-                            },
-                        ]
-                    };
-                },
+                        baseUrl: BASE_URL,
+                    }
+                }
             })
             .use(vuetify)
             .component('tile', Tile)
+            .component('plc', Plc)
+            .component('webshop', Webshop)
+            .component('dwh', Dwh)
+            .component('snake', Snake)
+            .component('thesis', Thesis)
             .mount('#app');
         </script>
     </body>

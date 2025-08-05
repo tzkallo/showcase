@@ -1,0 +1,44 @@
+<template id="Thesis">
+<v-container class="pl-0">
+    <!-- TILE -->
+    <tile
+        title="Thesis"
+        subtitle="Thinning algorithm visualization"
+        tags="C++, Qt, Opencv"
+        icon="mdi-image-filter-center-focus-strong-outline"
+        color="#808080"
+        @open="board = true"
+    ></tile>
+    <!-- DIALOG -->
+    <v-dialog v-model="board" max-width="600px">
+        <v-card style="position: relative;">
+            <v-btn
+            icon
+            @click="board = false"
+            style="position: absolute; top: 8px; right: 8px; z-index: 10;"
+            >
+            <v-icon>mdi-close</v-icon>
+            </v-btn>
+            <v-container>
+                <v-carousel
+                    hide-delimiters
+                    height="400"
+                    cycle
+                    show-arrows="hover"
+                >
+                    <v-carousel-item
+                        v-for="(img, i) in images"
+                        :key="i"
+                    >
+                        <v-img
+                            :src="img"
+                            class="rounded"
+                            contain
+                        ></v-img>
+                    </v-carousel-item>
+                </v-carousel>
+            </v-container>
+        </v-card>
+    </v-dialog>
+</v-container>
+</template>
