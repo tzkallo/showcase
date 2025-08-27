@@ -6,9 +6,9 @@ const Thesis = {
         return {
             board: false,
             sources: [
-                '/assets/images/fig_5_0_2_a.png',
-                '/assets/images/DEER_bm99_si.png',
-                '/assets/images/DEER_bm99_pi.png',
+                '/assets/thesis/fig_5_0_2_a.png',
+                '/assets/thesis/DEER_bm99_si.png',
+                '/assets/thesis/DEER_bm99_pi.png',
             ],
             content: {
             }

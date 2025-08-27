@@ -6,7 +6,7 @@ const Snake = {
         return {
             board: false,
             sources: [
-                '/assets/images/snake-game.png',
+                '/assets/snake/snake-game.png',
             ],
             content: {
             }
