@@ -58,17 +58,6 @@
 
 | Area        | Type       | Specification                       |
 | ----------- | ---------- | ----------------------------------- |
-| Operational | Functional | - Returns expected value in console |
+| Operational | Functional | Returns expected value in console, Writes record to DB (historized),  Logs to `app.log`|
+| Error Handling | Functional | Returns error message in console Logs to both `app.log` and `error.log`|
 
-<br/>
-
-- Writes record to DB (historized)
-
-- Logs to `app.log`
-
-- Does **not** write to `error.log` |  
-  | Error Handling | Functional | - Returns error message in console
-
-- Does **not** write to DB
-
-- Logs to both `app.log` and `error.log` |

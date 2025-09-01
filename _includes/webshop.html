@@ -1,59 +1,65 @@
 <template id="Webshop">
-<v-container class="pl-0">
-    <!-- TILE -->
-    <tile
-        title="Webshop"
-        subtitle="Online transaction system"
-        tags="Django, Django REST framework, Vue, Vuex, Vuetify, Html, Css, Postman"
-        icon="mdi-web"
-        color="#1867C0"
-        @open="board = true"
-    ></tile>
-    <!-- DIALOG -->
-    <v-dialog v-model="board" max-width="700px">
-        <v-card style="position: relative;">
-            <v-btn
-            icon
-            @click="board = false"
-            style="position: absolute; top: 8px; right: 8px; z-index: 10;"
-            >
-            <v-icon>mdi-close</v-icon>
-            </v-btn>
-            <v-container>
-                <h2>Testing</h2>
-                <p>
-                    I have passed the IQSTB base level exam. I wanted to create a simple testing script, so I started by learning, but I ended up making something much simpler yet, in my opinion, more informative.
-                </p>
-                <br/>
-                <v-stepper v-model="step" :items="['User story', 'Scopes', 'Analysis', 'Test case', 'Result']">
-                    <template v-slot:item.1>
-                        <v-card flat style="height:370px; overflow-y:auto">
-                            <v-card-text><div v-html="content.user_story"></div></v-card-text>
-                        </v-card>
-                    </template>
-                    <template v-slot:item.2>
-                        <v-card flat style="height:370px; overflow-y:auto">
-                            <v-card-text><div v-html="content.scopes"></div></v-card-text>
-                        </v-card>
-                    </template>
-                    <template v-slot:item.3>
-                        <v-card flat style="height:370px; overflow-y:auto">
-                            <v-card-text><div v-html="content.analysis"></div></v-card-text>
-                        </v-card>
-                    </template>
-                    <template v-slot:item.4>
-                        <v-card flat style="height:370px; overflow-y:auto">
-                            <v-card-text><div v-html="content.test_case"></div></v-card-text>
-                        </v-card>
-                    </template>
-                    <template v-slot:item.5>
-                        <v-card flat style="height:370px; overflow-y:auto">
-                            <v-card-text><div v-html="content.test_result"></div></v-card-text>
-                        </v-card>
-                    </template>
-                </v-stepper>
-            </v-container>
-        </v-card>
-    </v-dialog>
+<v-container fluid>
+    <v-row class="py-0">
+        <v-col cols="12" class="py-0"><h4>Online transaction system</h4></v-col>
+    </v-row>
+    <v-row class="py-0">
+      <v-col cols="12" class="py-0">
+        <v-chip
+        v-for="(tech, i) in technologies"
+        :key="i"
+        :color="tech.color"
+        label
+        size="small"
+        class="ma-1"
+        >
+        [[ tech.name ]]
+        </v-chip>
+      </v-col>
+    </v-row>
+    <v-row class="py-0">
+      <v-col cols="12" class="py-0 mt-5">
+            <v-carousel :show-arrows="false">
+                <v-carousel-item src="{{ site.baseurl }}/assets/webshop/webshop_home.png"></v-carousel-item>
+                <v-carousel-item src="{{ site.baseurl }}/assets/webshop/webshop_interfaces.png"></v-carousel-item>
+                <v-carousel-item src="{{ site.baseurl }}/assets/webshop/webshop_docker.png"></v-carousel-item>
+                <v-carousel-item>
+                    <v-stepper
+                        v-model="step"
+                        :items="['User story', 'Scopes', 'Analysis', 'Test case', 'Result']"
+                        flat
+                        elevation="0"
+                        class="no-shadow"
+                    >
+                        <template v-slot:item.1>
+                            <v-card flat style="height:250px; overflow-y:auto">
+                                <v-card-text><div v-html="content.user_story"></div></v-card-text>
+                            </v-card>
+                        </template>
+                        <template v-slot:item.2>
+                            <v-card flat style="height:250px; overflow-y:auto">
+                                <v-card-text><div v-html="content.scopes"></div></v-card-text>
+                            </v-card>
+                        </template>
+                        <template v-slot:item.3>
+                            <v-card flat style="height:250px; overflow-y:auto">
+                                <v-card-text><div v-html="content.analysis"></div></v-card-text>
+                            </v-card>
+                        </template>
+                        <template v-slot:item.4>
+                            <v-card flat style="height:250px; overflow-y:auto">
+                                <v-card-text><div v-html="content.test_case"></div></v-card-text>
+                            </v-card>
+                        </template>
+                        <template v-slot:item.5>
+                            <v-card flat style="height:250px; overflow-y:auto">
+                                <v-card-text><div v-html="content.test_result"></div></v-card-text>
+                            </v-card>
+                        </template>
+                    </v-stepper>
+                </v-carousel-item>
+            </v-carousel>
+        </v-col>
+    </v-row>
 </v-container>
 </template>

@@ -1,4 +1,57 @@
 <template id="Dwh">
+<v-container fluid>
+    <v-row class="py-0">
+        <v-col cols="12" class="py-0"><h4>Data warehouse (for webshop)</h4></v-col>
+    </v-row>
+    <v-row class="py-0">
+      <v-col cols="12" class="py-0">
+        <v-chip
+        v-for="(tech, i) in technologies"
+        :key="i"
+        :color="tech.color"
+        label
+        size="small"
+        class="ma-1"
+        >
+        [[ tech.name ]]
+        </v-chip>
+      </v-col>
+    </v-row>
+    <v-row class="py-0">
+      <v-col cols="12" class="py-0 mt-5">
+            <v-carousel :show-arrows="false">
+                <v-carousel-item src="{{ site.baseurl }}/assets/dwh/interfaces.png"></v-carousel-item>
+                <v-carousel-item src="{{ site.baseurl }}/assets/dwh/dbt_run.png"></v-carousel-item>
+                <v-carousel-item src="{{ site.baseurl }}/assets/dwh/streamlit.png"></v-carousel-item>
+                <v-carousel-item src="{{ site.baseurl }}/assets/dwh/airflow.png"></v-carousel-item>
+                <v-carousel-item src="{{ site.baseurl }}/assets/dwh/dashboard.png"></v-carousel-item>
+            </v-carousel>
+        </v-col>
+    </v-row>
+</v-container>
+</template>
+
+
+
+
+
+<template id="Dwh11">
+<v-container fluid>
+    <v-row>
+        <v-col cols="12"><p>Data warehouse project (temporarily for webshop)</p></v-col>
+    </v-row>
+    <v-row>
+        <v-col cols="12"><p>PostgreSQL, dbt, Airflow, Redash</p></v-col>
+    </v-row>
+    <v-row>
+        <!-- ide jöhetnek a webshop kártyák / galériák / carousel-ek -->
+    </v-row>
+</v-container>
+</template>
+
+
+
+<template id="Dwh1">
 <v-container class="pl-0">
     <!-- TILE -->
     <tile

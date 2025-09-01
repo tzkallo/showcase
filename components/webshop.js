@@ -3,7 +3,6 @@ const Webshop = {
     delimiters: ['[[', ']]'],
     data() {
         return {
-            board: false,
             step: 1,
             content: {
                 user_story: '',
@@ -11,8 +10,20 @@ const Webshop = {
                 analysis: '',
                 test_case: '',
                 test_result: '',
-            }
-        };
+            },
+            technologies: [
+                { name: 'PostgreSQL', color: 'blue darken-2' },
+                { name: 'Django', color: 'green darken-2' },
+                { name: 'Django REST framework', color: 'teal darken-1' },
+                { name: 'Vue', color: 'green lighten-1' },
+                { name: 'Vuex', color: 'cyan darken-2' },
+                { name: 'Vuetify', color: 'deep-purple accent-3' },
+                { name: 'Vue i18n', color: 'light-blue darken-1' },
+                { name: 'HTML', color: 'orange darken-2' },
+                { name: 'CSS', color: 'red lighten-1' },
+                { name: 'Docker', color: 'blue darken-3' },
+            ]
+        }
     },
     methods: {
         async loadMarkdown(file) {

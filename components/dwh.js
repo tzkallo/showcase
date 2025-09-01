@@ -1,31 +1,16 @@
 const Dwh = {
     template: '#Dwh',
     delimiters: ['[[', ']]'],
-    props: ['baseUrl'],
     data() {
         return {
-            board: false,
-            sources: [
-                '/assets/dwh/airflow.png',
-                '/assets/dwh/dbt_run.png',
-                '/assets/dwh/postgresql.png',
-            ],
-            content: {
-            }
-        };
-    },
-    computed: {
-        images() {
-            const base = this.baseUrl || '';
-            return this.sources.map(img => base + img);
+            technologies: [
+                { name: 'PostgreSQL', color: 'blue darken-2' },
+                { name: 'dbt', color: 'teal darken-1' },
+                { name: 'Airflow', color: 'cyan darken-2' },
+                { name: 'Streamlit', color: 'orange lighten-1' },
+                { name: 'Redash', color: 'deep-purple accent-3' },
+                { name: 'Docker', color: 'blue darken-3' },
+            ]
         }
-    },
-    methods: {
-        async loadMarkdown(file) {
-            const res = await fetch(`${BASE_URL}/assets/dwh/${file}`);
-            return marked.parse(await res.text());
-        }
-    },
-    async mounted() {
     }
 };

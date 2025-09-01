@@ -1,101 +1,122 @@
 <!DOCTYPE html>
 <html lang="hu">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tzkallo - showcase</title>
 
-        <title>tzkallo - showcase</title>
+    <link href="{{ site.baseurl }}/assets/index.css" rel="stylesheet">
+    <link href="{{ site.baseurl }}/libs/vuetify.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet">
 
-        <link href="{{ site.baseurl }}/assets/index.css" rel="stylesheet">
-        <link href="{{ site.baseurl }}/libs/vuetify.min.css" rel="stylesheet">
-        <link href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet">
+    <script src="{{ site.baseurl }}/libs/marked.min.js"></script>
+    <script src="{{ site.baseurl }}/libs/vue.global.min.js"></script>
+    <script src="{{ site.baseurl }}/libs/vue-router.global.js"></script>
+    <script src="{{ site.baseurl }}/libs/vuetify.min.js"></script>
 
-        <script src="{{ site.baseurl }}/libs/marked.min.js"></script>
-        <script src="{{ site.baseurl }}/libs/vue.global.min.js"></script>
-        <script src="{{ site.baseurl }}/libs/vuetify.min.js"></script>
+    <script>
+        const BASE_URL = '{{ site.baseurl }}';
+    </script>
+    {% include webshop.html %}
+    <script src="{{ site.baseurl }}/components/webshop.js"></script>
+    {% include dwh.html %}
+    <script src="{{ site.baseurl }}/components/dwh.js"></script>
+    {% include snake.html %}
+    <script src="{{ site.baseurl }}/components/snake.js"></script>
+    {% include thesis.html %}
+    <script src="{{ site.baseurl }}/components/thesis.js"></script>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 6px 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f5f5f5;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <v-app>
+            <v-container class="mx-auto" style="max-width:1080px;">
+                <v-tabs v-model="tab" align-tabs="start">
+                    <v-tab :value="1" @click="goTo('/webshop')"><v-icon icon="mdi-web"></v-icon> Webshop</v-tab>
+                    <v-tab :value="2" @click="goTo('/dwh')"><v-icon icon="mdi-database"></v-icon> DWH</v-tab>
+                    <v-tab :value="3" @click="goTo('/snake')"><v-icon icon="mdi-snake"></v-icon> Snake</v-tab>
+                    <v-tab :value="4" @click="goTo('/thesis')"><v-icon icon="mdi-image-filter-center-focus"></v-icon> Thesis</v-tab>
+                </v-tabs>
+                <div class="mt-4">
+                    <router-view v-slot="{ Component }">
+                        <component :is="Component" />
+                    </router-view>
+                </div>
+            </v-container>
+        </v-app>
+    </div>
+    <script>
+        const { createApp } = Vue;
+        const vuetify = Vuetify.createVuetify();
+        const routes = [
+            { path: '/webshop', component: Webshop },
+            { path: '/dwh', component: Dwh },
+            { path: '/snake', component: Snake },
+            { path: '/thesis', component: Thesis },
+            { path: '/', redirect: '/webshop' }
+        ];
 
-        <script src="{{ site.baseurl }}/libs/vuetify.min.js"></script>
+        const router = VueRouter.createRouter({
+            history: VueRouter.createWebHashHistory(),
+            routes
+        });
 
-        <script>
-            const BASE_URL = '{{ site.baseurl }}';
-        </script>
-
-        {% include tile.html %}
-        <script src="{{ site.baseurl }}/components/tile.js"></script>
-        {% include plc.html %}
-        <script src="{{ site.baseurl }}/components/plc.js"></script>
-        {% include webshop.html %}
-        <script src="{{ site.baseurl }}/components/webshop.js"></script>
-        {% include dwh.html %}
-        <script src="{{ site.baseurl }}/components/dwh.js"></script>
-        {% include snake.html %}
-        <script src="{{ site.baseurl }}/components/snake.js"></script>
-        {% include thesis.html %}
-        <script src="{{ site.baseurl }}/components/thesis.js"></script>
-    </head>
-    <body>
-        <div id="app">
-            <v-app>
-                <v-container class="mx-auto" style="max-width: 960px;">
-                    <v-row no-gutters align="center" class="mb-0" style="margin-bottom: 0;">
-                        <v-col cols="auto" class="pr-2">
-                            <span class="text-h6 font-weight-bold profile-brand">tzkallo</span>
-                        </v-col>
-                        <v-col cols="auto" class="pa-0">
-                            <a
-                            href="https://github.com/tzkallo"
-                            target="_blank"
-                            rel="noopener"
-                            class="profile-link"
-                            >
-                                <v-icon size="25">mdi-github</v-icon>
-                            </a>
-                            <a
-                            href="https://www.linkedin.com/in/tzkallo/"
-                            target="_blank"
-                            rel="noopener"
-                            class="profile-link"
-                            >
-                                <v-icon size="25">mdi-linkedin</v-icon>
-                            </a>
-                        </v-col>
-                    </v-row>
-
-                    <v-row no-gutters justify="start" class="mt-0" style="margin-top: 0;">
-                        <v-col cols="12" style="font-size: 0.75rem; color: rgba(0,0,0,0.6); padding-top: 0;">
-                            © 2025 Kálló Tamás Zoltán &lt;kallotamas@gmail.com&gt;
-                        </v-col>
-                     </v-row>
-
-                     <v-row no-gutters>
-<!--                         <v-col cols="12" md="4"><plc></plc></v-col> -->
-                        <v-col cols="12" md="4"><webshop></webshop></v-col>
-                        <v-col cols="12" md="4"><dwh :base-url="baseUrl"></dwh></v-col>
-                        <v-col cols="12" md="4" ><snake :base-url="baseUrl"></snake></v-col>
-                        <v-col cols="12" md="4" ><thesis :base-url="baseUrl"></thesis></v-col>
-                    </v-row>
-
-                </v-container>
-            </v-app>
-        </div>
-        <script>
-            const { createApp } = Vue;
-            const vuetify = Vuetify.createVuetify();
-            const app = createApp({
-                data() {
-                    return {
-                        baseUrl: BASE_URL,
+        const app = createApp({
+            data() {
+                return {
+                    tab: 1
+                }
+            },
+            methods: {
+                goTo(path) {
+                    router.push(path);
+                }
+            },
+            watch: {
+                '$route.path'(newPath) {
+                    switch(newPath) {
+                        case '/webshop': this.tab = 1; break;
+                        case '/dwh': this.tab = 2; break;
+                        case '/snake': this.tab = 3; break;
+                        case '/thesis': this.tab = 4; break;
+                        // case '/plc': this.tab = 5; break;
+                        default: this.tab = 1;
                     }
                 }
-            })
-            .use(vuetify)
-            .component('tile', Tile)
-            .component('plc', Plc)
-            .component('webshop', Webshop)
-            .component('dwh', Dwh)
-            .component('snake', Snake)
-            .component('thesis', Thesis)
-            .mount('#app');
-        </script>
-    </body>
+            },
+            mounted() {
+                this.$watch('$route.path', this.$options.watch['$route.path'].bind(this));
+                switch(this.$route.path) {
+                    case '/webshop': this.tab = 1; break;
+                    case '/dwh': this.tab = 2; break;
+                    case '/snake': this.tab = 3; break;
+                    case '/thesis': this.tab = 4; break;
+                    // case '/plc': this.tab = 5; break;
+                    default: this.tab = 1;
+                }
+            }
+        })
+        .use(router)
+        .use(vuetify)
+        .component('webshop', Webshop)
+        .component('dwh', Dwh)
+        .component('snake', Snake)
+        .component('thesis', Thesis)
+        .mount('#app');
+    </script>
+</body>
 </html>

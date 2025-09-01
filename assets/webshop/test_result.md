@@ -1,1 +1,1 @@
-results images
+coming soon

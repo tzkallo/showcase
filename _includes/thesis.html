@@ -1,43 +1,33 @@
 <template id="Thesis">
-<v-container class="pl-0">
-    <!-- TILE -->
-    <tile
-        title="Thesis"
-        subtitle="Thinning algorithm visualization"
-        tags="C++, Qt, Opencv"
-        icon="mdi-image-filter-center-focus-strong-outline"
-        color="#808080"
-        @open="board = true"
-    ></tile>
-    <!-- DIALOG -->
-    <v-dialog v-model="board" max-width="600px">
-        <v-card style="position: relative;">
-            <v-btn
-            icon
-            @click="board = false"
-            style="position: absolute; top: 8px; right: 8px; z-index: 10;"
-            >
-            <v-icon>mdi-close</v-icon>
-            </v-btn>
-            <v-container>
-                <v-carousel
-                    hide-delimiters
-                    height="400"
-                    show-arrows="hover"
-                >
-                    <v-carousel-item
-                        v-for="(img, i) in images"
-                        :key="i"
-                    >
-                        <v-img
-                            :src="img"
-                            class="rounded"
-                            contain
-                        ></v-img>
-                    </v-carousel-item>
-                </v-carousel>
-            </v-container>
-        </v-card>
-    </v-dialog>
+<v-container fluid>
+    <v-row class="py-0">
+        <v-col cols="12" class="py-0"><h4>Thinning algorithms visualization</h4></v-col>
+    </v-row>
+    <v-row class="py-0">
+      <v-col cols="12" class="py-0">
+        <v-chip
+        v-for="(tech, i) in technologies"
+        :key="i"
+        :color="tech.color"
+        label
+        size="small"
+        class="ma-1"
+        >
+        [[ tech.name ]]
+        </v-chip>
+      </v-col>
+    </v-row>
+    <v-row class="py-0">
+      <v-col cols="12" class="py-0 mt-5">
+            <v-carousel :show-arrows="false">
+                <v-carousel-item src="{{ site.baseurl }}/assets/thesis/fig_5_0_2_b.png"></v-carousel-item>
+                <v-carousel-item src="{{ site.baseurl }}/assets/thesis/DEER_bm99_si_progress.png"></v-carousel-item>
+                <v-carousel-item src="{{ site.baseurl }}/assets/thesis/DEER_bm99_si.png"></v-carousel-item>
+                <v-carousel-item src="{{ site.baseurl }}/assets/thesis/DEER_bn99_palette.png"></v-carousel-item>
+                <v-carousel-item src="{{ site.baseurl }}/assets/thesis/DEER_bm99_pi_progress.png"></v-carousel-item>
+                <v-carousel-item src="{{ site.baseurl }}/assets/thesis/DEER_bm99_pi.png"></v-carousel-item>
+            </v-carousel>
+        </v-col>
+    </v-row>
 </v-container>
 </template>
