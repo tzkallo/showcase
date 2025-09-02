@@ -25,6 +25,8 @@
     <script src="{{ site.baseurl }}/components/snake.js"></script>
     {% include thesis.html %}
     <script src="{{ site.baseurl }}/components/thesis.js"></script>
+    {% include graphics.html %}
+    <script src="{{ site.baseurl }}/components/graphics.js"></script>
     <style>
         table {
             border-collapse: collapse;
@@ -49,7 +51,10 @@
                     <v-tab :value="1" @click="goTo('/webshop')"><v-icon icon="mdi-web"></v-icon> Webshop</v-tab>
                     <v-tab :value="2" @click="goTo('/dwh')"><v-icon icon="mdi-database"></v-icon> DWH</v-tab>
                     <v-tab :value="3" @click="goTo('/snake')"><v-icon icon="mdi-snake"></v-icon> Snake</v-tab>
-                    <v-tab :value="4" @click="goTo('/thesis')"><v-icon icon="mdi-image-filter-center-focus"></v-icon> Thesis</v-tab>
+<!--                     <v-tab :value="4"><v-icon icon="mdi-electric-switch"></v-icon> PLC</v-tab> -->
+                    <v-tab :value="5" @click="goTo('/thesis')"><v-icon icon="mdi-image-filter-center-focus"></v-icon> Thesis</v-tab>
+                    <v-tab :value="6" @click="goTo('/graphics')"><v-icon icon="mdi-image-multiple"></v-icon> Graphics</v-tab>
+<!--                     <v-tab :value="7"><v-icon icon="mdi-list-box"></v-icon> Biblography</v-tab> -->
                 </v-tabs>
                 <div class="mt-4">
                     <router-view v-slot="{ Component }">
@@ -67,6 +72,7 @@
             { path: '/dwh', component: Dwh },
             { path: '/snake', component: Snake },
             { path: '/thesis', component: Thesis },
+            { path: '/graphics', component: Graphics },
             { path: '/', redirect: '/webshop' }
         ];
 
@@ -92,7 +98,8 @@
                         case '/webshop': this.tab = 1; break;
                         case '/dwh': this.tab = 2; break;
                         case '/snake': this.tab = 3; break;
-                        case '/thesis': this.tab = 4; break;
+                        case '/thesis': this.tab = 5; break;
+                        case '/graphics': this.tab = 6; break;
                         // case '/plc': this.tab = 5; break;
                         default: this.tab = 1;
                     }
@@ -104,7 +111,8 @@
                     case '/webshop': this.tab = 1; break;
                     case '/dwh': this.tab = 2; break;
                     case '/snake': this.tab = 3; break;
-                    case '/thesis': this.tab = 4; break;
+                    case '/thesis': this.tab = 5; break;
+                    case '/graphics': this.tab = 6; break;
                     // case '/plc': this.tab = 5; break;
                     default: this.tab = 1;
                 }
@@ -116,6 +124,7 @@
         .component('dwh', Dwh)
         .component('snake', Snake)
         .component('thesis', Thesis)
+        .component('graphics', Graphics)
         .mount('#app');
     </script>
 </body>

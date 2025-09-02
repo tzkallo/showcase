@@ -1,9 +1,6 @@
 <template id="Dwh">
 <v-container fluid>
     <v-row class="py-0">
-        <v-col cols="12" class="py-0"><h4>Data warehouse (for webshop)</h4></v-col>
-    </v-row>
-    <v-row class="py-0">
       <v-col cols="12" class="py-0">
         <v-chip
         v-for="(tech, i) in technologies"
@@ -28,68 +25,5 @@
             </v-carousel>
         </v-col>
     </v-row>
-</v-container>
-</template>
-
-
-
-
-
-<template id="Dwh11">
-<v-container fluid>
-    <v-row>
-        <v-col cols="12"><p>Data warehouse project (temporarily for webshop)</p></v-col>
-    </v-row>
-    <v-row>
-        <v-col cols="12"><p>PostgreSQL, dbt, Airflow, Redash</p></v-col>
-    </v-row>
-    <v-row>
-        <!-- ide jöhetnek a webshop kártyák / galériák / carousel-ek -->
-    </v-row>
-</v-container>
-</template>
-
-
-
-<template id="Dwh1">
-<v-container class="pl-0">
-    <!-- TILE -->
-    <tile
-        title="DWH"
-        subtitle="Data warehouse for webshop"
-        tags="PostgreSQL, dbt, Airflow, Redash"
-        icon="mdi-database"
-        color="#FFCA28"
-        @open="board = true"
-    ></tile>
-    <!-- DIALOG -->
-    <v-dialog v-model="board" max-width="800px">
-        <v-card style="position: relative;">
-            <v-btn
-            icon
-            @click="board = false"
-            style="position: absolute; top: 8px; right: 8px; z-index: 10;"
-            >
-            <v-icon>mdi-close</v-icon>
-            </v-btn>
-            <v-container>
-                <v-carousel
-                    hide-delimiters
-                    height="400"
-                    show-arrows="hover"
-                >
-                    <v-carousel-item
-                        v-for="(img, i) in images"
-                        :key="i"
-                    >
-                        <v-img
-                            :src="img"
-                            contain
-                        ></v-img>
-                    </v-carousel-item>
-                </v-carousel>
-            </v-container>
-        </v-card>
-    </v-dialog>
 </v-container>
 </template>
