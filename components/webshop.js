@@ -9,7 +9,6 @@ const Webshop = {
                 scopes: '',
                 analysis: '',
                 test_case: '',
-                test_result: '',
             },
             technologies: [
                 { name: 'PostgreSQL', color: 'blue darken-2' },
@@ -36,6 +35,5 @@ const Webshop = {
         this.content.scopes = await this.loadMarkdown('test_scopes.md');
         this.content.analysis = await this.loadMarkdown('test_analysis.md');
         this.content.test_case = await this.loadMarkdown('test_case.md');
-        this.content.test_result = await this.loadMarkdown('test_result.md');
     }
 };

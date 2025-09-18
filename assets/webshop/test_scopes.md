@@ -1,4 +1,4 @@
-The exchange rate function runs automatically on page load. It performs the following:
+The webshop's exchange rate function runs automatically and performs the following:
 
 - Retrieves live data from a third-party API
 
@@ -14,9 +14,9 @@ The exchange rate function runs automatically on page load. It performs the foll
 
 - 1 integration test to check live API availability
 
-- API response validation (success & error)
+- Validation of API responses (success & error)
 
-- DB write verification (success & failure)
+- Verification of database writes (success & failure)
 
 - Logging behavior and response timing
 

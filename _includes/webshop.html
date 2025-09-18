@@ -50,7 +50,9 @@
                         </template>
                         <template v-slot:item.5>
                             <v-card flat style="height:250px; overflow-y:auto">
-                                <v-card-text><div v-html="content.test_result"></div></v-card-text>
+                                <v-card-text class="d-flex justify-center">
+                                    <v-img src="{{ site.baseurl }}/assets/webshop/test_result_console.png"></v-img>
+                                </v-card-text>
                             </v-card>
                         </template>
                     </v-stepper>
