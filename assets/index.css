@@ -54,3 +54,7 @@
     display: none !important;
 }
 
+.no-shadow .v-stepper-header {
+    box-shadow: none !important;
+    border-bottom: none !important;
+}
